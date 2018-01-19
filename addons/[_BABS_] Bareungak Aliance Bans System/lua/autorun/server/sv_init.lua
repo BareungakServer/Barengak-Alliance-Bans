@@ -13,7 +13,7 @@ util.AddNetworkString( "AliBanMenu" )
     print("[BABS] 바른각 연합밴 시스탬 로드....")
 	banlist = {}
 	content = ""
-	local url = "http://119.199.73.181/Barn_Server/db_bans.txt"
+	local url = "https://raw.githubusercontent.com/BareungakServer/Barengak-Alliance-Bans/master/db_bans.txt"
 	
 	function check()
 	http.Fetch(url, function(html)
