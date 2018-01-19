@@ -1,5 +1,5 @@
 ﻿--[[
-바른각 연합밴 시스탬 (BABS) v1.0
+바른각 연합밴 시스탬 (BABS) v1.0.02
 ⓒ 2016 ~ 2018 Breaking Studio, Bareungak Alliance Bans 모든 권리 보유.
 ]]
 
