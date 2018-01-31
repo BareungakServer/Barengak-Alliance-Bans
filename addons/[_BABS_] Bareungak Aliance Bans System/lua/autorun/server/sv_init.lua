@@ -1,5 +1,5 @@
 ﻿--[[
-바른각 연합밴 시스탬 (BABS) v1.0.02
+바른각 연합밴 시스탬 (BABS) v1.0.03
 ⓒ 2016 ~ 2018 Breaking Studio, Bareungak Alliance Bans 모든 권리 보유.
 ]]
 
@@ -10,7 +10,8 @@ Config.Commander = "!연합밴"
 
 if SERVER then
 util.AddNetworkString( "AliBanMenu" )
-    print("[BABS] 바른각 연합밴 시스탬 로드....")
+	print("[BABS] 바른각 연합밴 시스템 로드....")
+	print("[BABS] 바른각 연합밴 시스템 버전 : v1.0.03")
 	banlist = {}
 	content = ""
 	local url = "https://raw.githubusercontent.com/BareungakServer/Barengak-Alliance-Bans/master/db_bans.txt"
@@ -20,7 +21,7 @@ util.AddNetworkString( "AliBanMenu" )
 			banlist = string.Explode("|",html)
 			content = html
 			if(banlist[1] > Config.Version) then
-			print("[BABS] 바른각 연합밴 시스탬 업데이트가 필요합니다!")
+			print("[BABS] 바른각 연합밴 시스템 업데이트가 필요합니다!")
 
 			for k, v in pairs(player.GetAll()) do
 				v:PrintMessage( HUD_PRINTTALK, "[BABS] 새로운 업데이트가 있습니다!" )
@@ -56,9 +57,9 @@ util.AddNetworkString( "AliBanMenu" )
 	
              function kickuser(v)
              	 print("Kick " .. v:Nick() .. " by BABS")
-             	v:Kick("[BABS] 당신은 바른각 연합밴 시스탬에 의하여 추방됬습니다.\n연합밴 사유: http://barncs.xyz/Barn_Server/BarnASV/")
+             	v:Kick("[BABS] 당신은 바른각 연합밴 시스템에 의하여 추방됬습니다.\n연합밴 사유: http://steamcommunity.com/groups/barnaliedbans")
              	for k, v in pairs(player.GetAll()) do
-				v:PrintMessage( HUD_PRINTTALK, v:Nick() .. " 님이 바른각 연합밴 시스탬에 의해 차단당했습니다!")
+				v:PrintMessage( HUD_PRINTTALK, v:Nick() .. " 님이 바른각 연합밴 시스템에 의해 차단당했습니다!")
 		end
              end
 
