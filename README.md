@@ -1,5 +1,5 @@
 # Barengak Alliance Bans
-Addon Version : v1.0.02
+Addon Version : v1.0.03
 ## Apply
 Install script to the `"/garrysmod/addons/"` folder.
 ## License
