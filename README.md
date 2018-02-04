@@ -1,4 +1,4 @@
-# Barengak Alliance Bans
+# Barengak Alliance Bans System
 Addon Version : v1.0.03
 ## Apply
 Install script to the `"/garrysmod/addons/"` folder.
