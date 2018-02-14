@@ -1,6 +1,6 @@
 # Barengak Alliance Bans System
-Addon Version : v1.1
-Last Update Date : 2018-02-15
+Addon Version : v1.1<p>
+Last Update Date : 2018-02-15</p>
 ## Apply
 Install script to the `"/garrysmod/addons/"` folder.
 ## License
