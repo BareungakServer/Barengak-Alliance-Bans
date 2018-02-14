@@ -5,7 +5,7 @@
 
 	AliBansConfig = {}
 	local Config = AliBansConfig
-	Config.Version = "1.0" --연합벤 현재 버전
+	Config.Version = "1.1" --연합벤 현재 버전
 	Config.Commander = "!연합밴" --연합벤 메뉴 명령어
     Config.LVersion = ""
 
