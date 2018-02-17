@@ -75,8 +75,9 @@ end
 Title       : BABS.aliget(target)
 Description : Check about target is banned or not, kicks when banned
 ---------------------------------------------------------------------------]]
+local IsFirstUser = true
 function BABS.aliget(v)
-	--BABS.check()  --1시간마다 자동 업데이트되므로 필요 없음
+	if IsFirstUser then BABS.check() IsFirstUser = false end
 	--BABS.usercheck() --마찬가지로 1시간마다 자동 실행되므로 필요없음
 	if table.HasValue(BABS.banlist,v:SteamID()) then
 		BABS.kickuser(v)
