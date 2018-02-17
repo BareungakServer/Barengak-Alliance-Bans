@@ -2,7 +2,7 @@
     local groupurl = "http://steamcommunity.com/groups/barnaliedbans"
     local infourl = "http://steamcommunity.com/groups/barnaliedbans"
 
-    net.Receive("AliBanMenu", function(len, ply)
+    net.Receive("BABSMenu", function(len, ply)
         if (LocalPlayer():IsSuperAdmin()) then
             surface.CreateFont("BigFont", {
                 font = "NanumGothic",
@@ -52,7 +52,7 @@
             end
 
             Button1.DoClick = function()
-                RunConsoleCommand("aliban_update")
+                RunConsoleCommand("babs_update")
             end
 
             local Button2 = vgui.Create("DButton", Frame)

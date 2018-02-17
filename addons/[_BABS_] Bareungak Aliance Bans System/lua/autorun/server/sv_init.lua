@@ -12,7 +12,7 @@ Config.KickAllSub = false --"true"로 놓으시면 가족공유 계정이 모두
 Config.Banlist = {}
 
 if SERVER then
-    util.AddNetworkString("AliBanMenu")
+    util.AddNetworkString("BABSMenu")
 
     function BABS.check()
         http.Fetch(Config.URL, function(body)
@@ -79,21 +79,22 @@ if SERVER then
         MsgC(Color(255, 0, 0), "[BABS]시스템이 로딩되었습니다!\n")
     end)
 
-    hook.Add("PlayerAuthed", "CheckUsers", function(v)
+    hook.Add("PlayerAuthed", "BABSCheckUsers", function(v)
         BABS.aliget(v)
         BABS.subcheck(v)
     end)
 
-    concommand.Add("aliban_update", function(v)
-        if (v:IsSuperAdmin()) then
-            BABS.check()
+
+    hook.Add("PlayerSay", "BABSCallMenu", function(v, cmd)
+        if (string.Trim(string.lower(cmd)) == Config.Command and v:IsSuperAdmin()) then
+                net.Start("BABSMenu")
+                net.Send(v)
         end
     end)
 
-    hook.Add("PlayerSay", "AliBanMenu", function(v, cmd)
-        if (string.Trim(string.lower(cmd)) == Config.Command and v:IsSuperAdmin()) then
-                net.Start("AliBanMenu")
-                net.Send(v)
+        concommand.Add("babs_update", function(v)
+        if (v:IsSuperAdmin()) then
+            BABS.check()
         end
     end)
 
