@@ -5,7 +5,7 @@ Config.Version = 2.1 --연합밴  현재 버전
 Config.Command = "!연합밴" --연합밴  메뉴 명령어
 Config.APIKey = "" --스팀 API 키를 큰따옴표 사이에 입력해주세요.
 Config.Reason = "[BABS] 연합밴 사유: http://steamcommunity.com/groups/barnaliedbans"
-Config.KickAllSub = false --true로 놓으시면 가족공유 계정이 모두 차단됩니다 (기본 false)
+Config.KickAllSub = true --"true"로 놓으시면 가족공유 계정이 모두 차단됩니다 (기본 false)
 --------------[이 아래는 만지지 마세요]--------------
 Config.Banlist = {}
 Config.BanSlist = {}
@@ -26,14 +26,14 @@ if SERVER then
             Config.LVersion = tonumber(Config.Banlist["Ver"])
 
             if (Config.LVersion > Config.Version) then
-                MsgC(Color(0, 212, 255), "[BABS]",Color(255,255,255)" 새로운 업데이트가 있습니다!\n")
+                MsgC(Color(0, 212, 255), "[BABS]",Color(255,255,255)," 새로운 업데이트가 있습니다!\n")
                 PrintMessage(HUD_PRINTTALK, "[BABS] 새로운 업데이트가 있습니다!\n")
             end
 
-            MsgC(Color(0, 212, 255), "[BABS]",Color(255,255,255)" 데이터베이스 업데이트 완료!\n")
+            MsgC(Color(0, 212, 255), "[BABS]",Color(255,255,255)," 데이터베이스 업데이트 완료!\n")
             PrintMessage(HUD_PRINTTALK, "[BABS] 데이터베이스 업데이트 완료!\n")
         end, function(error)
-            MsgC(Color(0, 212, 255), "[BABS]",Color(255,255,255)" 데이터베이스를 업데이트 하는동안 오류가 발생하였습니다. " .. error .. "\n")
+            MsgC(Color(0, 212, 255), "[BABS]",Color(255,255,255)," 데이터베이스를 업데이트 하는동안 오류가 발생하였습니다. " .. error .. "\n")
         end)
     end
 
@@ -42,7 +42,7 @@ if SERVER then
             local body = util.JSONToTable(body)
 
             if (not body or not body.response or not body.response.lender_steamid) then
-                MsgC(Color(0, 212, 255), "[BABS]",Color(255,255,255)" API 값을 받지 못했습니다, SteamAPI 키가 제대로 적혀있는지 확인해주세요.\n")
+                MsgC(Color(0, 212, 255), "[BABS]",Color(255,255,255)," API 값을 받지 못했습니다, SteamAPI 키가 제대로 적혀있는지 확인해주세요.\n")
 
                 return
             end
@@ -63,7 +63,7 @@ if SERVER then
 
 
         end, function(error)
-            MsgC(Color(0, 212, 255), "[BABS]",Color(255,255,255)" SteamAPI 응답이 올바르지 않습니다. Steam 서버가 닫혀 있을 수도 있습니다. " .. error .. "\n")
+            MsgC(Color(0, 212, 255), "[BABS]",Color(255,255,255)," SteamAPI 응답이 올바르지 않습니다. Steam 서버가 닫혀 있을 수도 있습니다. " .. error .. "\n")
         end)
     end
 
@@ -91,7 +91,7 @@ if SERVER then
     hook.Add("Initialize", "InitializeBABS", function()
         BABScheck()
         timer.Create("UpdateBABS", 1800, 0, BABScheck)
-        MsgC(Color(0, 210, 255), "[BABS]",Color(255,255,255)" 시스템이 로딩되었습니다! 현재 버전 : v" .. Config.Version .. "\n")
+        MsgC(Color(0, 210, 255), "[BABS]",Color(255,255,255)," 시스템이 로딩되었습니다! 현재 버전 : v" .. Config.Version .. "\n")
     end)
 
     hook.Add("PlayerAuthed", "BABSCheckUsers", function(v)
