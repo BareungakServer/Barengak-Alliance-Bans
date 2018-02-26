@@ -10,15 +10,15 @@ Config.KickAllSub = true --"true"로 놓으시면 가족공유 계정이 모두 
 Config.Banlist = {}
 Config.BanSlist = {}
 Config.LVersion = "" --서버로부터 불러온 최신버전
-Config.URL = "https://raw.githubusercontent.com/BareungakServer/Barengak-Alliance-Bans/master/db_bans_meta.html" --데이터베이스 링크
---구버젼과 충돌 방지를 위해 URL에는 _meta 수식어 붙임
+Config.URL = "https://raw.githubusercontent.com/BareungakServer/Barengak-Alliance-Bans/master/db_bans.json" --데이터베이스 링크
+--서버 자료구조를 더 강력한 json으로 변경
 
 if SERVER then
     util.AddNetworkString("BABSMenu")
 
     function BABScheck()
         http.Fetch(Config.URL, function(body)
-            Config.Banlist = string.Explode("|", string.Replace(body," ",""))
+            Config.Banlist = util.JSONToTable(body)
             --for _, item in pairs(Config.Banlist) do --이러면 의미가 없음
             --  Config.Banlist[item] = true
             --end
