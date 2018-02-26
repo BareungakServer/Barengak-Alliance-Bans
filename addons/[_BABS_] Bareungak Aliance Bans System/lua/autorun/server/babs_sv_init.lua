@@ -7,7 +7,7 @@ Config.LVersion = "" --서버로부터 불러온 최신버전
 Config.URL = "https://raw.githubusercontent.com/BareungakServer/Barengak-Alliance-Bans/master/db_bans.html" --데이터베이스 링크 
 Config.APIKey = "" --스팀 API 키를 큰따옴표 사이에 입력해주세요.
 Config.Reason = "[BABS] 연합밴 사유: http://steamcommunity.com/groups/barnaliedbans"
-Config.KickAllSub = true --"true"로 놓으시면 가족공유 계정이 모두 차단됩니다 (기본 false)
+Config.KickAllSub = false --"true"로 놓으시면 가족공유 계정이 모두 차단됩니다 (기본 false)
 Config.Banlist = {}
 Config.BanSlist = {}
 
