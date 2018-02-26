@@ -1,0 +1,6 @@
+"AddonInfo"
+{
+	"name" "BABS Bareungak Aliance Bans System"
+	"author_name" "Bareungak Aliance Bans"
+	"info" "Bareungak Aliance Bans System"
+}
