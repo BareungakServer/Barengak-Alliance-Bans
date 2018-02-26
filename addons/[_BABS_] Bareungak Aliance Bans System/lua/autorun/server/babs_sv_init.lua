@@ -5,13 +5,12 @@ Config.Version = 2.1 --연합밴  현재 버전
 Config.Command = "!연합밴" --연합밴  메뉴 명령어
 Config.APIKey = "" --스팀 API 키를 큰따옴표 사이에 입력해주세요.
 Config.Reason = "[BABS] 연합밴 사유: http://steamcommunity.com/groups/barnaliedbans"
-Config.KickAllSub = true --"true"로 놓으시면 가족공유 계정이 모두 차단됩니다 (기본 false)
+Config.KickAllSub = false --"true"로 놓으시면 가족공유 계정이 모두 차단됩니다 (기본 false)
 --------------[이 아래는 만지지 마세요]--------------
 Config.Banlist = {}
 Config.BanSlist = {}
 Config.LVersion = "" --서버로부터 불러온 최신버전
 Config.URL = "https://raw.githubusercontent.com/BareungakServer/Barengak-Alliance-Bans/master/db_bans.json" --데이터베이스 링크
---서버 자료구조를 더 강력한 json으로 변경
 
 if SERVER then
     util.AddNetworkString("BABSMenu")
@@ -19,9 +18,6 @@ if SERVER then
     function BABScheck()
         http.Fetch(Config.URL, function(body)
             Config.Banlist = util.JSONToTable(body)
-            --for _, item in pairs(Config.Banlist) do --이러면 의미가 없음
-            --  Config.Banlist[item] = true
-            --end
 
             Config.LVersion = tonumber(Config.Banlist["Ver"])
 
