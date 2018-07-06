@@ -142,4 +142,4 @@ if SERVER then
             MsgN("[BABS] Last version : " .. Config.LVersion .. "  Current version : " .. Config.Version)
         end
     end)
-end
+end.
