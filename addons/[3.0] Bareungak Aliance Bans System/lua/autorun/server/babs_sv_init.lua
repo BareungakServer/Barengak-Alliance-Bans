@@ -10,7 +10,7 @@ Config.KickAllSub = false -- "true" 으(로) 설정하시면 가족공유 계정
 Config.Banlist = {}
 Config.BanSlist = {}
 Config.LVersion = "" -- 서버로 부터 받아온 최신버전
-Config.URL = "https://raw.githubusercontent.com/BareungakServer/Barengak-Alliance-Bans/master/db_bans.json" -- BABS 데이터베이스 링크
+Config.URL = "https://raw.githubusercontent.com/BareungakServer/Barengak-Alliance-Bans/master/db_banlist.json" -- BABS 데이터베이스 링크
 Config.UpdateTime = 1400
 
 if SERVER then
