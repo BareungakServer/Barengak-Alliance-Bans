@@ -1,5 +1,5 @@
 # Barengak Alliance Bans System
-<img src="https://i.imgur.com/Z4RcAxF.png">
+<img src="https://i.imgur.com/Z4RcAxF.png"><p>
 Addon Version : v3.0
 ## Apply
 Install script to the `"/garrysmod/addons/"` folder.
