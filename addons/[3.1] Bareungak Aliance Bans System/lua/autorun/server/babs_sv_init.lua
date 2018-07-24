@@ -3,7 +3,7 @@ local Config = BABSConfigs
 Config.Version = 3.1 -- 연합밴 현재 버전
 Config.APIKey = "" -- SteamAPI 키 을(를) 큰 따옴표 사이에 입력해주세요.
 Config.Reason = "[BABS] 바른각 연합밴 사유: "
-Config.KickAllSub = true -- "true" 으(로) 설정하시면 가족공유 계정이 모두 차단됩니다. [ 기본값 : false ]
+Config.KickAllSub = false -- "true" 으(로) 설정하시면 가족공유 계정이 모두 차단됩니다. [ 기본값 : false ]
 --------------[ 선 아래 코드를 수정하지 마시오. ]--------------
 Config.Banlist = {}
 Config.LVersion = "" -- 서버로 부터 받아온 최신버전
