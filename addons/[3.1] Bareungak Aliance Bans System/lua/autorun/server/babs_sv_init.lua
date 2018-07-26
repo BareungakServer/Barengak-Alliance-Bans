@@ -1,8 +1,8 @@
 BABSConfigs = {}
 local Config = BABSConfigs
-Config.Version = 3.0 -- 연합밴 현재 버전
+Config.Version = 3.1 -- 연합밴 현재 버전
 Config.APIKey = "" -- SteamAPI 키 을(를) 큰 따옴표 사이에 입력해주세요.
-Config.Reason = "[BABS] 바른각 연합밴 등재 사유: "
+Config.Reason = "[BABS] 바른각 연합밴 사유: "
 Config.KickAllSub = false -- "true" 으(로) 설정하시면 가족공유 계정이 모두 차단됩니다. [ 기본값 : false ]
 --------------[ 선 아래 코드를 수정하지 마시오. ]--------------
 Config.Banlist = {}
@@ -31,7 +31,6 @@ if SERVER then
             for k, v in pairs(Config.Banlist) do
                 if tonumber(k) ~= nil and not sql.Query("SELECT SteamID FROM babslist WHERE SteamID = '" .. Config.Banlist[k][1]["SteamID"] .. "'") then
                     sql.Query("INSERT INTO babslist( SteamID,Reason ) VALUES( '" .. Config.Banlist[k][1]["SteamID"] .. "', '" .. Config.Banlist[k][1]["Reason"] .. "' )")
-                    print("SQL 입력됨 : " .. Config.Banlist[k][1]["SteamID"])
                 end
             end
         end
@@ -49,8 +48,8 @@ if SERVER then
 
             local lender = body.response.lender_steamid
 
-            if (Config.KickAllSub and lender ~= 0) then
-                v:Kick("[BABS] 본 서버에서는 가족공유 계정이 금지되어 있습니다.") -- 자체 함수로 킥하면 연합밴으로 혼동할 가능성 있음
+            if (Config.KickAllSub and lender ~= "0") then
+                BABSkickuser(v, "본 서버에서는 가족공유 계정이 금지되어 있습니다.")
             end
 
             if (Config.Banlist[util.SteamIDFrom64(lender)]) then
@@ -95,7 +94,6 @@ if SERVER then
     end)
 
     concommand.Add("babs_update", function(v)
-        --서버 콘솔인경우 IsValid == false
         if (not v:IsValid() or v:IsSuperAdmin()) then
             BABScheck()
         end
@@ -108,5 +106,4 @@ if SERVER then
             MsgN("[BABS] Last version : " .. Config.LVersion .. "  Current version : " .. Config.Version)
         end
     end)
-    
 end
