@@ -2,7 +2,8 @@
 <img src="https://i.imgur.com/Z4RcAxF.png"><p></p>
 ## Addon Version
 BABS Server Version : 3.1<p></p>
-BABS Client Version : Non Released
+BABS Client Version : Non Released<p></p>
+BABS Database Version : 2019-01-02 AM 6:01
 ## Apply
 Install script to the `"/garrysmod/addons/"` folder.
 ## License
