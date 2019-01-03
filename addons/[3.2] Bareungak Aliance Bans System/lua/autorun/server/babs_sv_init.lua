@@ -1,7 +1,17 @@
+--[[ BABS -----------------------------------------------------------------------------------------
+
+@System Creator : lill74, _jellen
+@System Inspection : Bareungak
+
+The source code can be modified for non-profit purposes, original authors, and second revision, 
+if the distribution ban is complied with.
+
+--------------------------------------------------------------------------------------------------]]
 BABSConfigs = {}
 local Config = BABSConfigs
-Config.Version = 3.1 -- 연합밴 현재 버전
+Config.Version = 3.2 -- 연합밴 현재 버전
 Config.APIKey = "" -- SteamAPI 키 을(를) 큰 따옴표 사이에 입력해주세요.
+Config.Command = "!연합밴" -- 인터페이스를 실행하는 명령어를 설정해주세요.
 Config.Reason = "[BABS] 바른각 연합밴 사유: "
 Config.KickAllSub = false -- "true" 으(로) 설정하시면 가족공유 계정이 모두 차단됩니다. [ 기본값 : false ]
 --------------[ 선 아래 코드를 수정하지 마시오. ]--------------
@@ -11,6 +21,16 @@ Config.URL = "https://raw.githubusercontent.com/BareungakServer/Barengak-Allianc
 Config.UpdateTime = 1800
 
 if SERVER then
+
+    resource.AddFile( "materials/frame_logo.png" )
+    resource.AddFile( "materials/whitelist.png" )
+    resource.AddFile( "materials/update_db.png" )
+    resource.AddFile( "materials/group.png" )
+    resource.AddFile( "materials/update_addon.png" )
+    resource.AddFile( "materials/close.png" )
+
+    util.AddNetworkString("BABSMenu")
+
     function BABScheck()
         http.Fetch(Config.URL, function(body)
             Config.Banlist = util.JSONToTable(body)
@@ -91,6 +111,20 @@ if SERVER then
     hook.Add("PlayerAuthed", "BABSCheckUsers", function(v)
         BABSaliget(v)
         BABSsubcheck(v)
+    end)
+
+    hook.Add("PlayerSay", "BABSCallMenu", function(v, cmd)
+        if (string.Trim(string.lower(cmd))) == Config.Command then
+            net.Start("BABSMenu")
+            net.Send(v)
+        end
+    end)
+
+    concommand.Add("babs_interface", function(v)
+        if v:IsValid() then
+            net.Start("BABSMenu")
+            net.Send(v)
+        end
     end)
 
     concommand.Add("babs_update", function(v)
