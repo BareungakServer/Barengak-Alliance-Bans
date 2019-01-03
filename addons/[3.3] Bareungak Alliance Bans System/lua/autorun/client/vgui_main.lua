@@ -14,31 +14,26 @@ if CLIENT then
     net.Receive("BABSMenu", function(len, ply)
     	local Frame = vgui.Create("DFrame")
     	Frame:SetTitle("")
-    	Frame:SetSize(1050,650)
+    	Frame:SetSize(1050,663)
     	Frame:Center()
     	Frame:MakePopup()
         Frame:ShowCloseButton(false)
 
         Frame.Paint = function( self, w, h )
     	   draw.RoundedBox( 0, 0, 0, w, h, Color(25, 25, 25) ) -- Dark Main
-           draw.RoundedBox( 0, 0, 0, 200, 650, Color(0, 136, 255) ) -- Blue Main ORG (235, 104, 119)
-           draw.RoundedBox( 0, 200, 0, 850, 3, Color(0, 136, 255) ) -- Blue Upper ORG (235, 104, 119)
-           draw.RoundedBox( 0, 0, 105, 200, 2, Color(255, 255, 255) ) -- Line at whitelist_btn 1
-           draw.RoundedBox( 0, 0, 147, 200, 2, Color(255, 255, 255) ) -- Line at whitelist_btn 2
-           draw.RoundedBox( 0, 0, 187, 200, 2, Color(255, 255, 255) ) -- Line at updatedb_btn 1
-           draw.RoundedBox( 0, 0, 230, 200, 2, Color(255, 255, 255) ) -- Line at group_btn 1
-           draw.RoundedBox( 0, 0, 273, 200, 2, Color(255, 255, 255) ) -- Line at updatead_btn 1
-           draw.RoundedBox( 0, 0, 473, 200, 2, Color(255, 255, 255) ) -- Line at close_btn 1
-           draw.RoundedBox( 0, 0, 525, 200, 2, Color(255, 255, 255) ) -- Line at close_btn 2
+           draw.RoundedBox( 0, 200, 0, 850, 2, Color(229, 229, 229) ) -- White Upper
+           draw.RoundedBox( 0, 0, 650, 1050, 13, Color(104, 33, 122) ) -- Pink Down
+           draw.SimpleText( "v3.3 for Garry's mod", "HudHintTextSmall", 960, 651, Color(255, 255, 255) ) -- Text of Version
+           draw.SimpleText( "System Creator : lill74, _jellen  |  VGUI Creator : Bareungak", "DermaDefault", 5, 649, Color(255, 255, 255) )
         end
 
         local logo_img = vgui.Create( "DImage", Frame ) -- frame logo image
-        logo_img:SetPos( 30, 20 )
-        logo_img:SetSize( 138, 38 )
+        logo_img:SetPos( 0, 0 )
+        logo_img:SetSize( 200, 650 )
         logo_img:SetImage( "materials/frame_logo.png" )
 
-        local frame_html = vgui.Create( "DHTML", Frame ) -- big frame image
-        frame_html:SetPos( 200, 3 )
+        local frame_html = vgui.Create( "DHTML", Frame ) -- big frame html
+        frame_html:SetPos( 200, 2 )
         frame_html:SetSize( 850, 648 )
         frame_html:OpenURL( "https://raw.githubusercontent.com/BareungakServer/Barengak-Alliance-Bans/master/status_main.png" )
 
@@ -67,7 +62,7 @@ if CLIENT then
         end
 
         local updatead_btn = vgui.Create( "DImageButton", Frame ) -- group button
-        updatead_btn:SetPos( 26, 239 )
+        updatead_btn:SetPos( 27, 239 )
         updatead_btn:SetSize( 144, 25 )
         updatead_btn:SetImage( "materials/update_addon.png" )
         updatead_btn.DoClick = function()

@@ -9,7 +9,7 @@ if the distribution ban is complied with.
 --------------------------------------------------------------------------------------------------]]
 BABSConfigs = {}
 local Config = BABSConfigs
-Config.Version = 3.2 -- 연합밴 현재 버전
+Config.Version = 3.3 -- 연합밴 현재 버전
 Config.APIKey = "" -- SteamAPI 키 을(를) 큰 따옴표 사이에 입력해주세요.
 Config.Command = "!연합밴" -- 인터페이스를 실행하는 명령어를 설정해주세요.
 Config.Reason = "[BABS] 바른각 연합밴 사유: "
