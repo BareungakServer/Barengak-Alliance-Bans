@@ -23,7 +23,7 @@ if CLIENT then
     	   draw.RoundedBox( 0, 0, 0, w, h, Color(25, 25, 25) ) -- Dark Main
            draw.RoundedBox( 0, 200, 0, 850, 2, Color(229, 229, 229) ) -- White Upper
            draw.RoundedBox( 0, 0, 650, 1050, 13, Color(104, 33, 122) ) -- Pink Down
-           draw.SimpleText( "v3.3 for Garry's mod", "HudHintTextSmall", 960, 651, Color(255, 255, 255) ) -- Text of Version
+           draw.SimpleText( "v3.4 for Garry's mod", "HudHintTextSmall", 960, 651, Color(255, 255, 255) ) -- Text of Version
            draw.SimpleText( "System Creator : lill74, _jellen  |  VGUI Creator : Bareungak", "DermaDefault", 5, 649, Color(255, 255, 255) )
         end
 

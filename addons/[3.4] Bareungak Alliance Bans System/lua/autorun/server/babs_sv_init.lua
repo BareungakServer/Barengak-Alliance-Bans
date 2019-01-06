@@ -9,16 +9,16 @@ if the distribution ban is complied with.
 --------------------------------------------------------------------------------------------------]]
 BABSConfigs = {}
 local Config = BABSConfigs
-Config.Version = 3.3 -- 연합밴 현재 버전
+Config.Version = 3.4 -- 연합밴 현재 버전
 Config.APIKey = "" -- SteamAPI 키 을(를) 큰 따옴표 사이에 입력해주세요.
 Config.Command = "!연합밴" -- 인터페이스를 실행하는 명령어를 설정해주세요.
-Config.Reason = "[BABS] 바른각 연합밴 사유: "
+Config.Reason = "[BABS] 바른각 연합밴 사유 : "
 Config.KickAllSub = false -- "true" 으(로) 설정하시면 가족공유 계정이 모두 차단됩니다. [ 기본값 : false ]
 --------------[ 선 아래 코드를 수정하지 마시오. ]--------------
 Config.Banlist = {}
 Config.LVersion = "" -- 서버로 부터 받아온 최신버전
 Config.URL = "https://raw.githubusercontent.com/BareungakServer/Barengak-Alliance-Bans/master/db_banlist.json" -- BABS 데이터베이스 링크
-Config.UpdateTime = 1800
+Config.UpdateTime = 1200
 
 if SERVER then
 
@@ -32,6 +32,7 @@ if SERVER then
     util.AddNetworkString("BABSMenu")
 
     function BABScheck()
+        sql.Query("DELETE FROM babslist;")
         http.Fetch(Config.URL, function(body)
             Config.Banlist = util.JSONToTable(body)
             Config.LVersion = tonumber(Config.Banlist["Ver"])
