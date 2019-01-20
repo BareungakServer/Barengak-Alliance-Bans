@@ -66,7 +66,7 @@ if SERVER then
             end
 
             if (BABS.Banlist[lender]) then
-                BABS.kickuser(v, BABS.Banlist[lender][reason] .. "(부계정 감지)")
+                BABS.kickuser(v, BABS.Banlist[lender]["Reason"] .. "(부계정 감지)")
             end
         end, function(error)
             MsgC(Color(0, 212, 255), "[BABS]", Color(255, 255, 255), " SteamAPI 응답이 올바르지 않습니다! Steam 서버에 문제가 있을 수 있습니다. " .. error .. "\n")
