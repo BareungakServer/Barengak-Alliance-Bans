@@ -1,8 +1,8 @@
 # Barengak Alliance Bans System
 <img src="https://i.imgur.com/Z4RcAxF.png"><p></p>
 ## Addon Version
-BABS Version : 3.4 (2019-01-06)<p></p>
-BABS Database Version : 2019-01-19 AM 9:18
+BABS Version : 3.5 (2019-07-04)<p></p>
+BABS Database Version : 2019-07-04 AM 7:42
 ## Apply
 Install script to the `"/garrysmod/addons/"` folder.
 ## License
