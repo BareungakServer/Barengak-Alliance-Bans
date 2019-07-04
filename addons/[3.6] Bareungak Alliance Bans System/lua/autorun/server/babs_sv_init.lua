@@ -2,7 +2,7 @@
 
 English :
 
-@System Version : 3.5
+@System Version : 3.6
 @System Developer : lill74, _Jellen, Bareungak
 @System Inspection : Bareungak
 
@@ -45,7 +45,7 @@ Touching below phrase can cause problems with your script, Please Don't Touch it
 
 --------------------------------------------------------------------------------------------------]]
 
-Config.Version    = 3.5
+Config.Version    = 3.6
 Config.LVersion   = "Not Loaded!"
 Config.Reason     = "[BABS] 바른각 연합밴 등록 사유 : "
 Config.URL        = "https://raw.githubusercontent.com/BareungakServer/Barengak-Alliance-Bans/master/get_banlist.json"
@@ -115,7 +115,7 @@ function BABS.update()
         --Return : nil
         if Config.URL ~= "https://raw.githubusercontent.com/BareungakServer/Barengak-Alliance-Bans/master/get_banlist.json" then
             BABS.print("연합밴 데이터베이스 URL 주소(Config.URL)의 임의 변경이 확인되었습니다, " ..
-                       "치명적인 오류가 발생할 수 있으며, 당사는 어떠한 경우에도 해당 서버에 대한 문제를 보증하지 않습니다!",
+                       "치명적인 오류가 발생할 수 있으며, 바른각 연합밴은 어떠한 경우에도 임의로 변경된 연합밴 시스템을 보증하지 않습니다!",
                        BABS.PRINTTO_ADMINS, true
                       )
         end
@@ -286,7 +286,7 @@ end
 function BABS.addSteamID64ToWhitelist(steamid64, nick)
     --BABS.addSteamID64ToWhitelist(string steamid64, string nick)
     --Desc   : steamid64를 화이트리스트에 추가하고 리스트를 저장합니다.
-    nick = tostring(nick) or tostring(steamid64)
+    nick = nick and tostring(nick) or tostring(steamid64)
     BABS.Whitelist["b_" .. steamid64] = {Nick = nick}
     file.Write("babs/whitelist.txt", util.TableToJSON(BABS.Whitelist))
 end
@@ -366,14 +366,14 @@ concommand.Add("babs_addtowhitelist", function(v,_,args)
         BABS.addSteamID64ToWhitelist(args[1], args[2])
     else
         if v:IsValid() then
-            v:PrintMessage(HUD_PRINTTALK, "올바른 고유번호/SteamID64가 아닙니다.")
+            v:PrintMessage(HUD_PRINTTALK, "올바른 고유번호 (SteamID64) 가 아닙니다.")
         else
-            BABS.print("올바른 고유번호/SteamID64가 아닙니다.")
+            BABS.print("올바른 고유번호 (SteamID64) 가 아닙니다.")
         end
         return
     end
 
-    BABS.print(args[1] .. "(" .. args[2] or args[1] .. ")" .. "이 화이트리스트에 추가되었습니다.", BABS.PRINTTO_ADMINS, true)
+    BABS.print(args[1] .. " (" .. (args[2] or args[1]) .. ") 을(를) 화이트리스트에 추가되었습니다.", BABS.PRINTTO_ADMINS, true)
 end)
 
 concommand.Add("babs_removefromwhitelist", function(v,_,args)
@@ -389,16 +389,16 @@ concommand.Add("babs_removefromwhitelist", function(v,_,args)
         steamid64 = args[1]
     else
         if v:IsValid() then
-            v:PrintMessage(HUD_PRINTTALK, "올바른 고유번호/SteamID64가 아닙니다.")
+            v:PrintMessage(HUD_PRINTTALK, "올바른 고유번호 (SteamID64) 가 아닙니다.")
         else
-            BABS.print("올바른 고유번호/SteamID64가 아닙니다.")
+            BABS.print("올바른 고유번호 (SteamID64) 가 아닙니다.")
         end
         return
     end
 
     if BABS.getFromWhitelist(steamid64) then
         BABS.removeSteamID64FromWhitelist(steamid64)
-        BABS.print(args[1] .. " 이 화이트리스트에서 제거되었습니다.", BABS.PRINTTO_ADMINS, true)
+        BABS.print(args[1] .. " 을(를) 화이트리스트에서 제거되었습니다.", BABS.PRINTTO_ADMINS, true)
     else
         if v:IsValid() then
             v:PrintMessage(HUD_PRINTTALK, "화이트리스트에 해당 고유번호가 존재하지 않습니다.")
