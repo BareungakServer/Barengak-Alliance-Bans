@@ -2,7 +2,7 @@
 <img src="https://i.imgur.com/Z4RcAxF.png"><p></p>
 ## Addon Version
 BABS Version : 3.5 (2019-07-04)<p></p>
-BABS Database Version : 2019-07-04 AM 7:42
+BABS Database Version : 2019-07-04 PM 7:34 REV. 2
 ## Apply
 Install script to the `"/garrysmod/addons/"` folder.
 ## License
