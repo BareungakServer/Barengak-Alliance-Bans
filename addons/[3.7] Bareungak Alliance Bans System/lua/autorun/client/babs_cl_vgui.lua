@@ -27,7 +27,7 @@ if CLIENT then
     	   draw.RoundedBox( 0, 0, 0, w, h, Color( 15, 15, 15 ) ) -- Dark Main
            draw.RoundedBox( 0, 200, 0, 850, 2, Color( 229, 229, 229 ) ) -- White Upper
            draw.RoundedBox( 0, 0, 650, 1050, 20, Color( 104, 33, 122 ) ) -- Pink Down
-           draw.SimpleText( "BABS v3.6 | DB KO_KR", "InterFrame_Explanation_Font", 5, 651, Color( 255, 255, 255 ) ) -- Pink Text 1
+           draw.SimpleText( "BABS v3.7 | DB KO_KR", "InterFrame_Explanation_Font", 5, 651, Color( 255, 255, 255 ) ) -- Pink Text 1
            draw.SimpleText( "게임 서버와 유저 모두를 위한 게리모드 연합밴 시스템, 바른각 연합밴 입니다.", "InterFrame_Explanation_Font", 170, 651, Color( 255, 255, 255 ) ) -- Pink Text 2
         end
 

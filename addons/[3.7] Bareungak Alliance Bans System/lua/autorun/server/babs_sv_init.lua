@@ -2,7 +2,7 @@
 
 English :
 
-@System Version : 3.6
+@System Version : 3.7
 @System Developer : lill74, _Jellen, Bareungak
 @System Inspection : Bareungak
 
@@ -45,7 +45,7 @@ Touching below phrase can cause problems with your script, Please Don't Touch it
 
 --------------------------------------------------------------------------------------------------]]
 
-Config.Version    = 3.6
+Config.Version    = 3.7
 Config.LVersion   = "Not Loaded!"
 Config.Reason     = "[BABS] 바른각 연합밴 등록 사유 : "
 Config.URL        = "https://raw.githubusercontent.com/BareungakServer/Barengak-Alliance-Bans/master/get_banlist.json"
@@ -146,7 +146,7 @@ function BABS.getFromDB(steamid)
         local to64 = util.SteamIDTo64(steamid)
         if to64 ~= "0" then
             return BABS.Banlist["b_" .. to64]
-        elseif #steamid == 17 and string.Left(steamid, 8) == "76561198" then --SteamID64 유효성 검사
+        elseif #steamid == 17 and string.Left(steamid, 3) == "765" then --SteamID64 유효성 검사
             return BABS.Banlist["b_" .. steamid]
         else
             error("[BABS] Tried to check invalid SteamID: " .. steamid)
@@ -197,7 +197,7 @@ function BABS.checkFamilyShare(ply, retries, errorInfo)
             ErrorNoHalt("[BABS] " .. errorInfo)
             return
         end
-        if APIKey == "" or not APIKey then
+        if Config.APIKey == "" or not Config.APIKey then
             BABS.print("SteamAPI 키가 적혀있지 않습니다. 부계정 감지를 위해 SteamAPI 키를 작성해 주세요.", BABS.PRINTTO_ADMINS)
             return
         end
@@ -216,13 +216,14 @@ function BABS.checkFamilyShare(ply, retries, errorInfo)
             end
 
             local lender = body.response.lender_steamid
+            if lender == "0" then return end
 
             local banTbl = BABS.getFromDB(lender)
             if banTbl then
                 BABS.kickUser(ply, banTbl["Reason"] .. "(부계정 감지)", lender)
             end
 
-            if Config.KickAllSub and lender ~= "0" then
+            if Config.KickAllSub then
                 BABS.print(ply:Nick() .. "님은 가족공유 계정이기 때문에 바른각 연합밴 시스템에 의해 추방되었습니다!", BABS.PRINTTO_ALL, true)
                 ply:Kick("[BABS] 이 서버에서는 가족공유 계정을 사용하실 수 없습니다.")
             end
@@ -271,10 +272,6 @@ function BABS.kickUser(ply, creason, originalAccountSteamID64)
         ply:Kick(reason)
     end)
 end
-hook.Add("PlayerSpawnObject", "BABSPreventBanningUserSpawn", function(ply)
-    --밴당하고 있을때 물체스폰 금지
-    if ply.isBeingKickedByBABS then return false end
-end)
 
 function BABS.getFromWhitelist(steamid64)
     --BABS.getFromWhitelist(string steamid64)
@@ -300,7 +297,7 @@ end
 
 ----Hooks----
 
-hook.Add("Initialize", "InitializeBABS", function()
+hook.Add("Think", "InitializeBABS", function()
     timer.Create("UpdateBABS", Config.UpdateTime, 0, BABS.update)
     file.CreateDir("babs")
     file.CreateDir("babs/logs")
@@ -309,9 +306,9 @@ hook.Add("Initialize", "InitializeBABS", function()
     then
         file.Write("babs/whitelist.txt", "[]")
     end
-
     BABS.update()
     BABS.print("시스템이 정상적으로 로드되었습니다! 게리모드용 연합밴 버전 : v" .. Config.Version)
+    hook.Remove("Think", "InitializeBABS") --1 Tick hook
 end)
 
 hook.Add("PlayerAuthed", "BABSCheckUsers", function(ply)
@@ -327,6 +324,11 @@ hook.Add("PlayerSay", "BABSCallMenu", function(ply, cmd)
         net.Start("BABSMenu")
         net.Send(ply)
     end
+end)
+
+hook.Add("PlayerSpawnObject", "BABSPreventBanningUserSpawn", function(ply)
+    --밴당하고 있을때 물체스폰 금지
+    if ply.isBeingKickedByBABS then return false end
 end)
 
 ----Concommands----
